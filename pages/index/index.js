@@ -13,14 +13,29 @@ Page({
     newsCategories: ['国内','国际','财经','娱乐','军事','体育','其他']
   },
   onLoad() {
+    this.setData({
+      type: 'gn'
+    })
+    this.getNews()
+  },
+  getNews(callback) {
     wx.request({
       url: 'https://test-miniprogram.com/api/news/list',
       data: {
-        type: 'gn'
+        type: this.data.type
       },
       success: res => {
         this.setLargeNews(res)
+      },
+      complete: () => {
+        callback && callback()
       }
+    })
+  },
+
+  onPullDownRefresh() {
+    this.getNews(() => {
+      wx.stopPullDownRefresh()
     })
   },
 
@@ -57,13 +72,16 @@ Page({
 
   onTapCategory(e) {
     let category = e.currentTarget.dataset.category
+    this.setData({
+      type: categoryMap[category]
+    }),
     wx.request({
       url: 'https://test-miniprogram.com/api/news/list',
       data: {
         type: categoryMap[category]
       },
       success: res => {
-        setLargeNews(res)
+        this.setLargeNews(res)
       }
     })
   },
