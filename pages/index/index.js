@@ -19,26 +19,31 @@ Page({
         type: 'gn'
       },
       success: res => {
-        let result = res.data.result
-        let newsTime = new Date(result[0].date)
-        this.setData({
-          lg_image: result[0].firstImage,
-          sm_image: result[1].firstImage,
-          hot_news_title: result[0].title,
-          hot_news_resource: result[0].source == '' ? '来源不明' : result[0].source,
-          hot_news_time: newsTime.getHours() + ':' + newsTime.getMinutes()
-        }),
-        this.setNewsList(result)
-        console.log(result)
+        this.setLargeNews(res)
       }
     })
   },
+
+  setLargeNews(res) {
+    let result = res.data.result
+    let newsTime = new Date(result[0].date)
+    this.setData({
+      lg_id: result[0].id,
+      lg_image: result[0].firstImage,
+      hot_news_title: result[0].title,
+      hot_news_resource: result[0].source == '' ? '来源不明' : result[0].source,
+      hot_news_time: newsTime.getHours() + ':' + newsTime.getMinutes()
+    }),
+      this.setNewsList(result)
+  },
+
   setNewsList(result) {
     let newsList = []
     let newsTime
     for (let i = 1; i < result.length; i++) {
       newsTime = new Date(result[i].date)
       newsList.push({
+        id: result[i].id,
         title: result[i].title,
         sm_image: result[i].firstImage,
         source:result[i].source == '' ? '来源不明' : result[i].source,
@@ -51,25 +56,22 @@ Page({
   },
 
   onTapCategory(e) {
-    var category = e.currentTarget.dataset.category;
+    let category = e.currentTarget.dataset.category
     wx.request({
       url: 'https://test-miniprogram.com/api/news/list',
       data: {
         type: categoryMap[category]
       },
       success: res => {
-        let result = res.data.result
-        let newsTime = new Date(result[0].date)
-        this.setData({
-          lg_image: result[0].firstImage,
-          sm_image: result[1].firstImage,
-          hot_news_title: result[0].title,
-          hot_news_resource: result[0].source == '' ? '来源不明' : result[0].source,
-          hot_news_time: newsTime.getHours() + ':' + newsTime.getMinutes()
-        }),
-          this.setNewsList(result)
-        console.log(result)
+        setLargeNews(res)
       }
+    })
+  },
+  
+  onTapNews(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/details/details?id=' + id,
     })
   }
  })

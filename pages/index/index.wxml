@@ -7,7 +7,7 @@
   </view>
 </scroll-view>
 
-<view class='news-image-wrapper'>
+<view class='news-image-wrapper' data-id='{{lg_id}}' bindtap='onTapNews'>
   <view class='news-image-location'>
     <image class='news-image' src='{{lg_image}}' mode='scallToFit'></image>
     <view class='text-pos-wrapper'>
@@ -18,15 +18,14 @@
             <view class='news-time'>{{hot_news_time}}</view>
           </view>
       </view>
-    </view>
-    
+    </view>  
   </view>
 </view>
 
 <scroll-view scroll-y>
   <view class='news-snapshot-wrapper'>
     <view class="news-lists" wx:for='{{newsList}}'>
-      <view class='title-info-box'>
+      <view class='title-info-box' bindtap='onTapNews'>
         <view class='news-title'>{{item.title}}</view>
         <view class="info-box">
           <view class='news-source'>{{item.source}}</view>
