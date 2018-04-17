@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<scroll-view scroll-x>
+  <view class='news-categories'>
+    <view class='news-category' wx:for='{{newsCategories}}'>
+      <view class='category' data-category='{{item}}' bindtap='onTapCategory'>{{item}}</view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class='news-image-wrapper'>
+  <view class='news-image-location'>
+    <image class='news-image' src='{{lg_image}}' mode='scallToFit'></image>
+    <view class='text-pos-wrapper'>
+      <view class='title-info-box'>
+          <view class='news-title'>{{hot_news_title}}</view>
+          <view class="info-box">
+            <view class='news-source'>{{hot_news_resource}}</view>
+            <view class='news-time'>{{hot_news_time}}</view>
+          </view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+<scroll-view scroll-y>
+  <view class='news-snapshot-wrapper'>
+    <view class="news-lists" wx:for='{{newsList}}'>
+      <view class='title-info-box'>
+        <view class='news-title'>{{item.title}}</view>
+        <view class="info-box">
+          <view class='news-source'>{{item.source}}</view>
+          <view class='news-time'>{{item.time}}</view>
+        </view>
+      </view>
+      <image class='news-small-image' src='{{item.sm_image}}'></image>
+    </view>
+  </view>
+</scroll-view>   
+      
