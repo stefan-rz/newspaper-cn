@@ -25,7 +25,7 @@
 <scroll-view scroll-y>
   <view class='news-snapshot-wrapper'>
     <view class="news-lists" wx:for='{{newsList}}'>
-      <view class='title-info-box' bindtap='onTapNews'>
+      <view class='title-info-box' data-id='{{item.id}},'bindtap='onTapNews'>
         <view class='news-title'>{{item.title}}</view>
         <view class="info-box">
           <view class='news-source'>{{item.source}}</view>
