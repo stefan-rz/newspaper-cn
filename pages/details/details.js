@@ -16,7 +16,6 @@ Page({
   },
 
   getNews() {
-    console.log(this.data.id)
     wx.request({
       url: 'https://test-miniprogram.com/api/news/detail',
       data: {
@@ -24,10 +23,20 @@ Page({
       },
       success: res => {
         let result = res.data.result
+        console.log(result)
         let arr = result.content
+        let newsTime = new Date(result.date)
+        let hour = newsTime.getHours()
+        let minutes = newsTime.getMinutes()
+        hour = hour < 10 ? '0' + hour : hour
+        minutes = minutes < 10 ? '0' + minutes : minutes
         this.setData({
-          id: result.id,
-          content: arr
+          firstImage:result.firstImage,
+          title: result.title,
+          source: result.source == '' ? '来源不明' : result.source,
+          time: hour + ':' + minutes,
+          readCount: result.readCount,
+          contents: arr
       })
      }
    })

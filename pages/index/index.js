@@ -25,7 +25,7 @@ Page({
         type: this.data.type
       },
       success: res => {
-        this.setLargeNews(res)
+        this.setHotNewsAndNewsList(res)
       },
       complete: () => {
         callback && callback()
@@ -39,30 +39,38 @@ Page({
     })
   },
 
-  setLargeNews(res) {
+  setHotNewsAndNewsList(res) {
     let result = res.data.result
     let newsTime = new Date(result[0].date)
+    let hour = newsTime.getHours()
+    let minutes = newsTime.getMinutes()
+    hour = hour < 10 ? '0' + hour : hour
+    minutes = minutes < 10 ? '0' + minutes : minutes
     this.setData({
       lg_id: result[0].id,
       lg_image: result[0].firstImage,
       hot_news_title: result[0].title,
       hot_news_resource: result[0].source == '' ? '来源不明' : result[0].source,
-      hot_news_time: newsTime.getHours() + ':' + newsTime.getMinutes()
+      hot_news_time: hour + ':' + minutes
     }),
       this.setNewsList(result)
   },
 
   setNewsList(result) {
     let newsList = []
-    let newsTime
+    
     for (let i = 1; i < result.length; i++) {
-      newsTime = new Date(result[i].date)
+      let newsTime = new Date(result[i].date)
+      let hour = newsTime.getHours()
+      let minutes = newsTime.getMinutes() 
+      hour = hour < 10 ? '0' + hour : hour
+      minutes = minutes < 10 ? '0' + minutes : minutes
       newsList.push({
         id: result[i].id,
         title: result[i].title,
         sm_image: result[i].firstImage,
         source:result[i].source == '' ? '来源不明' : result[i].source,
-        time: newsTime.getHours() + ':' + newsTime.getMinutes()
+        time: hour + ':' + minutes
       })
     }
     this.setData({
@@ -81,7 +89,7 @@ Page({
         type: categoryMap[category]
       },
       success: res => {
-        this.setLargeNews(res)
+        this.setHotNewsAndNewsList(res)
       }
     })
   },

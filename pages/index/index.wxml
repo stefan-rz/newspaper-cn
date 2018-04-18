@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <scroll-view scroll-x>
   <view class='news-categories'>
-    <view class='news-category' wx:for='{{newsCategories}}'>
+    <view class='news-category' wx:for='{{newsCategories}}' wx:key='{{index}}'>
       <view class='category' data-category='{{item}}' bindtap='onTapCategory'>{{item}}</view>
     </view>
   </view>
@@ -24,7 +24,7 @@
 
 <scroll-view scroll-y>
   <view class='news-snapshot-wrapper'>
-    <view class="news-lists" wx:for='{{newsList}}'>
+    <view class="news-lists" wx:for='{{newsList}}' wx:key='{{index}}'>
       <view class='title-info-box' data-id='{{item.id}},'bindtap='onTapNews'>
         <view class='news-title'>{{item.title}}</view>
         <view class="info-box">

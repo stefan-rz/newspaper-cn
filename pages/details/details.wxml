@@ -1,2 +1,23 @@
 <!--pages/details/details.wxml-->
-<text>pages/details/details.wxml</text>
+<view class ='news-header-box'>
+  <view class='news-title'>{{title}}</view>
+  <view class='info-box'>
+    <view class='news-source'>{{source}}</view>
+    <view class='news-time'>{{time}}</view>
+    <view class='readText'>阅读</view>
+    <view class='read-counts'>{{readCount}}</view>
+  </view>
+</view>
+<scroll-view>
+  <view class='news-contents' wx:for='{{contents}}' wx:key='{{index}}'>
+  <view wx:if='{{item.type == "p"}}' class="news-container">
+    <text class='paragraphs'>{{item.text}}</text>
+  </view>
+  <view wx:if='{{item.type == "image"}}' class="news-container">
+      <image class='images' src='{{item.src}}'></image>
+  </view>
+  <view wx:if='{{item.type == "strong"}}' class="news-container">
+      <strong class='strongText'>{{item.text}}</strong>
+  </view>
+</view>
+</scroll-view>
