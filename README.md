@@ -1,6 +1,11 @@
-# newspaper-cn
+# Wechat mini program China News
 项目 新闻小程序
 =====
+## My Final Project Pages 我的最终项目成果展示
+![新闻列表](https://user-images.githubusercontent.com/2655537/39023732-0b02a398-446f-11e8-8a82-f293c9fcaff3.png)
+![新闻列表](https://user-images.githubusercontent.com/2655537/39023772-3ba4ee0c-446f-11e8-8b5c-402b9551a57a.png)
+![新闻详情](https://user-images.githubusercontent.com/2655537/39023776-3cdfdf34-446f-11e8-9ab0-6476c6eb07f3.png)
+
 
 项目概述
 ----
