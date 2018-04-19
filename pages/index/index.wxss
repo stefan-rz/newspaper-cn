@@ -29,11 +29,16 @@
 
 .text-pos-wrapper {
   position: absolute;
-  top: 280rpx;
-  left: 60rpx;
+  left: 54rpx;
+  width: 640rpx;
+  bottom: 20rpx;
   color: white;
-  width: 630rpx;
-  height: 100rpx;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.title-info-box {
+  display:flex;
+  flex-direction: column;
 }
 
 .news-lists {
@@ -43,14 +48,10 @@
   justify-content: space-between;
   padding: 20rpx; 
 }
-.title-info-box {
-  display:flex;
-  flex-direction: column;
-  justify-content: flex-start;
 
-}
 .news-title {
-  flex-shrink: 2;  
+  flex-shrink: 2; 
+  padding: 20rpx; 
   font-size: 30rpx;
 }
 
@@ -65,8 +66,8 @@
 .info-box {
   display: flex;
   font-size: 25rpx;
-  padding-top:10rpx;
-  color: #A7ABA8;
+  color: darkgrey;
+  padding-left: 20rpx;
 }
 
 .news-source {

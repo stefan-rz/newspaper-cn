@@ -2,13 +2,12 @@
 Page({
   data: {
     id: 0,
-    firstImage: '',
     title: '',
     source: '',
     time: '',
     readCount: '',
     contents: '',
-    default_image: '/images/default.png'
+    defaultImage: '/images/default.png'
   },
 
   onLoad(options) {
@@ -39,7 +38,6 @@ Page({
     hour = hour < 10 ? '0' + hour : hour
     minutes = minutes < 10 ? '0' + minutes : minutes
     this.setData({
-      firstImage: result.firstImage == '' ? this.data.default_image : result.firstImage,
       title: result.title,
       source: result.source == '' ? '来源不明' : result.source,
       time: hour + ':' + minutes,

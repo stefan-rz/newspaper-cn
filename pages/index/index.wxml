@@ -7,14 +7,14 @@
   </view>
 </scroll-view>
 
-<view class='news-image-wrapper' data-id='{{lg_id}}' bindtap='onTapNews'>
-  <image class='news-image' src='{{lg_image}}' mode='scallToFit'></image>
+<view class='news-image-wrapper' data-id='{{lgId}}' bindtap='onTapNews'>
+  <image class='news-image' src='{{lgImage}}' mode='scallToFit'></image>
   <view class='text-pos-wrapper'>
     <view class='title-info-box'>
-        <view class='news-title'>{{hot_news_title}}</view>
+        <view class='news-title'>{{hotNewsTitle}}</view>
         <view class="info-box">
-          <view class='news-source'>{{hot_news_resource}}</view>
-          <view class='news-time'>{{hot_news_time}}</view>
+          <view class='news-source'>{{hotNewsResource}}</view>
+          <view class='news-time'>{{hotNewsTime}}</view>
         </view>
     </view>
   </view>  
@@ -30,7 +30,7 @@
           <view class='news-time'>{{item.time}}</view>
         </view>
       </view>
-      <image class='news-small-image' src='{{item.sm_image}}'></image>
+      <image class='news-small-image' src='{{item.smImage}}'></image>
     </view>
   </view>
 </scroll-view>   

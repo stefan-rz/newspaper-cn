@@ -4,7 +4,9 @@
   padding-top: 40rpx;
   padding-left: 20rpx;
   padding-right: 20rpx;
+  font: bold;
 }
+
 .news-title {
   font-size: 50rpx;
   font: bold;

@@ -11,15 +11,15 @@ const categoryMap = {
 Page({
   data: {
     newsCategories: ['国内','国际','财经','娱乐','军事','体育','其他'],
-    lg_id: 0,
-    lg_image: '',
-    hot_news_title: '',
-    hot_news_resource: '',
-    hot_news_time: '',
-    default_image: '/images/default.png',
+    lgId: 0,
+    lgImage: '',
+    hotNewsTitle: '',
+    hotNewsResource: '',
+    hotNewsTime: '',
+    defaultImage: '/images/default.png',
     id: 0,
     title: '',
-    sm_image: '',
+    smImage: '',
     source: '',
     time: '',
     type: '',
@@ -64,19 +64,20 @@ Page({
       hour = hour < 10 ? '0' + hour : hour
       minutes = minutes < 10 ? '0' + minutes : minutes
       i == 0 ? this.setData({
-        lg_id: result[i].id,
-        lg_image: result[i].firstImage == '' ? this.data.default_image : result[i].firstImage,
-        hot_news_title: result[i].title,
-        hot_news_resource: result[i].source == '' ? '来源不明' : result[i].source,
-        hot_news_time: hour + ':' + minutes
+        lgId: result[i].id,
+        lgImage: (result[i].firstImage == '' || result[i].source == undefined) ? this.data.defaultImage : result[i].firstImage,
+        hotNewsTitle: result[i].title,
+        hotNewsResource: (result[i].source == '' || result[i].source == undefined) ? '来源不明' : result[i].source,
+        hotNewsTime: hour + ':' + minutes
       }) : newsList.push({
         id: result[i].id,
         title: result[i].title,
-        sm_image: result[i].firstImage == '' ? this.data.default_image : result[i].firstImage,
-        source:result[i].source == '' ? '来源不明' : result[i].source,
+        smImage: (result[i].firstImage == '' || result[i].source == undefined) ? this.data.defaultImage : result[i].firstImage,
+        source: (result[i].source == '' || result[i].source == undefined) ? '来源不明' : result[i].source,
         time: hour + ':' + minutes
       })
     }
+    
     this.setData({
       newsList: newsList
     })
