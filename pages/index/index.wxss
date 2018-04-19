@@ -1,15 +1,16 @@
-/*width 750rpx, height 760rpx*/
+/* pages/index/index.wxss */
+
 .news-categories {
     display:flex;
-    background-color: #399DDB
+    background-color: #399DDB;
 }
 
 .category {
-    display:flex;
+    display: flex;
     width: 107rpx;
     flex-shrink: 0;
-    flex-direction:column;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
     color: #C4E0F3;
 }
 
@@ -37,7 +38,7 @@
 }
 
 .title-info-box {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 

@@ -4,7 +4,7 @@
   <view class='info-box'>
     <view class='news-source'>{{source}}</view>
     <view class='news-time'>{{time}}</view>
-    <view class='readText'>阅读</view>
+    <view class='read-text'>阅读</view>
     <view class='read-counts'>{{readCount}}</view>
   </view>
 </view>
@@ -17,7 +17,7 @@
       <image class='images' src='{{item.src}}'></image>
   </view>
   <view wx:if='{{item.type == "strong"}}' class="news-container">
-      <strong class='strongText'>{{item.text}}</strong>
+      <strong class='strong-text'>{{item.text}}</strong>
   </view>
 </view>
 </scroll-view>

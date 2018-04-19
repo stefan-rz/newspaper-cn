@@ -16,7 +16,7 @@
   padding-right: 20rpx;
 }
 
-.readText {
+.read-text {
   padding-left: 450rpx;
 }
 
@@ -28,7 +28,7 @@
 .info-box{
   display: flex;
   font-size: 20rpx;
-  padding-top:10rpx;
+  padding-top: 10rpx;
   color: #A7ABA8;
 }
 
@@ -38,7 +38,7 @@
   margin-left: 25rpx;
 }
 
-.strongText {
+.strong-text {
   padding: 10rpx;
 }
 
