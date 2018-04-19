@@ -10,7 +10,22 @@ const categoryMap = {
 }
 Page({
   data: {
-    newsCategories: ['国内','国际','财经','娱乐','军事','体育','其他']
+    newsCategories: ['国内','国际','财经','娱乐','军事','体育','其他'],
+    lg_id: 0,
+    lg_image: '',
+    hot_news_title: '',
+    hot_news_resource: '',
+    hot_news_time: '',
+    default_image: '/images/default.png',
+    id: 0,
+    title: '',
+    sm_image: '',
+    source: '',
+    time: '',
+    type: '',
+    currentItem: '',
+    currentCategory: '',
+    newsList: []
   },
   onLoad() {
     this.setData({
@@ -25,7 +40,7 @@ Page({
         type: this.data.type
       },
       success: res => {
-        this.setHotNewsAndNewsList(res)
+        this.setNewsList(res)
       },
       complete: () => {
         callback && callback()
@@ -39,36 +54,25 @@ Page({
     })
   },
 
-  setHotNewsAndNewsList(res) {
-    let result = res.data.result
-    let newsTime = new Date(result[0].date)
-    let hour = newsTime.getHours()
-    let minutes = newsTime.getMinutes()
-    hour = hour < 10 ? '0' + hour : hour
-    minutes = minutes < 10 ? '0' + minutes : minutes
-    this.setData({
-      lg_id: result[0].id,
-      lg_image: result[0].firstImage,
-      hot_news_title: result[0].title,
-      hot_news_resource: result[0].source == '' ? '来源不明' : result[0].source,
-      hot_news_time: hour + ':' + minutes
-    }),
-      this.setNewsList(result)
-  },
-
-  setNewsList(result) {
-    let newsList = []
-    
-    for (let i = 1; i < result.length; i++) {
+  setNewsList(res) {
+    let newsList = [] 
+    let result = res.data.result  
+    for (let i = 0; i < result.length; i++) {
       let newsTime = new Date(result[i].date)
       let hour = newsTime.getHours()
       let minutes = newsTime.getMinutes() 
       hour = hour < 10 ? '0' + hour : hour
       minutes = minutes < 10 ? '0' + minutes : minutes
-      newsList.push({
+      i == 0 ? this.setData({
+        lg_id: result[i].id,
+        lg_image: result[i].firstImage == '' ? this.data.default_image : result[i].firstImage,
+        hot_news_title: result[i].title,
+        hot_news_resource: result[i].source == '' ? '来源不明' : result[i].source,
+        hot_news_time: hour + ':' + minutes
+      }) : newsList.push({
         id: result[i].id,
         title: result[i].title,
-        sm_image: result[i].firstImage,
+        sm_image: result[i].firstImage == '' ? this.data.default_image : result[i].firstImage,
         source:result[i].source == '' ? '来源不明' : result[i].source,
         time: hour + ':' + minutes
       })
@@ -81,17 +85,10 @@ Page({
   onTapCategory(e) {
     let category = e.currentTarget.dataset.category
     this.setData({
-      type: categoryMap[category]
+      type: categoryMap[category],
+      currentCategory: category
     }),
-    wx.request({
-      url: 'https://test-miniprogram.com/api/news/list',
-      data: {
-        type: categoryMap[category]
-      },
-      success: res => {
-        this.setHotNewsAndNewsList(res)
-      }
-    })
+    this.getNews()
   },
   
   onTapNews(e) {

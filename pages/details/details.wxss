@@ -54,6 +54,7 @@
     padding-left: 18rpx;
     padding-bottom: 6rpx;
 }
+
 .paragraphs {
     margin-top: 8rpx;
     margin-left: 16rpx;

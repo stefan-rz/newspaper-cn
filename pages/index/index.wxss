@@ -4,7 +4,7 @@
     background-color: #399DDB
 }
 
-.news-category {
+.category {
     display:flex;
     width: 107rpx;
     flex-shrink: 0;
@@ -12,6 +12,7 @@
     align-items:center;
     color: #C4E0F3;
 }
+
 
 .news-image-wrapper {
   position: relative;
@@ -63,7 +64,7 @@
 
 .info-box {
   display: flex;
-  font-size: 20rpx;
+  font-size: 25rpx;
   padding-top:10rpx;
   color: #A7ABA8;
 }
@@ -72,5 +73,7 @@
   padding-right: 10rpx;
 }
 
-
+.active-tag {
+  color: white;
+}
 

@@ -1,11 +1,14 @@
 // pages/details/details.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    id:0
+    id: 0,
+    firstImage: '',
+    title: '',
+    source: '',
+    time: '',
+    readCount: '',
+    contents: '',
+    default_image: '/images/default.png'
   },
 
   onLoad(options) {
@@ -22,23 +25,26 @@ Page({
         id: this.data.id
       },
       success: res => {
-        let result = res.data.result
-        console.log(result)
-        let arr = result.content
-        let newsTime = new Date(result.date)
-        let hour = newsTime.getHours()
-        let minutes = newsTime.getMinutes()
-        hour = hour < 10 ? '0' + hour : hour
-        minutes = minutes < 10 ? '0' + minutes : minutes
-        this.setData({
-          firstImage:result.firstImage,
-          title: result.title,
-          source: result.source == '' ? '来源不明' : result.source,
-          time: hour + ':' + minutes,
-          readCount: result.readCount,
-          contents: arr
-      })
+        this.setNewsDetails(res)
      }
    })
+  },
+  
+  setNewsDetails(res) {
+    let result = res.data.result
+    let arr = result.content
+    let newsTime = new Date(result.date)
+    let hour = newsTime.getHours()
+    let minutes = newsTime.getMinutes()
+    hour = hour < 10 ? '0' + hour : hour
+    minutes = minutes < 10 ? '0' + minutes : minutes
+    this.setData({
+      firstImage: result.firstImage == '' ? this.data.default_image : result.firstImage,
+      title: result.title,
+      source: result.source == '' ? '来源不明' : result.source,
+      time: hour + ':' + minutes,
+      readCount: result.readCount,
+      contents: arr
+    })
   }
 })

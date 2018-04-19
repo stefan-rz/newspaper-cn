@@ -9,7 +9,7 @@
   </view>
 </view>
 <scroll-view>
-  <view class='news-contents' wx:for='{{contents}}' wx:key='{{index}}'>
+  <view class='news-contents' wx:for='{{contents}}' wx:key='id'>
   <view wx:if='{{item.type == "p"}}' class="news-container">
     <text class='paragraphs'>{{item.text}}</text>
   </view>
